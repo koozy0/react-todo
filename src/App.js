@@ -16,13 +16,13 @@ class App extends Component {
   };
 
   render() {
+    const { todos } = this.state;
+
     return (
       <div className='react-todo'>
         <Navbar />
 
-        <ul>
-          <TodoList todos={this.state.todos} />
-        </ul>
+        <TodoList todos={todos} />
       </div>
     );
   }

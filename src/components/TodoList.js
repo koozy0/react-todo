@@ -4,7 +4,12 @@ import Todo from './Todo';
 export class TodoList extends Component {
   render() {
     const { todos } = this.props;
-    return todos.map(todo => <Todo todo={todo} />);
+
+    return (
+      <ul className='todo-list'>
+        <Todo todos={todos} />
+      </ul>
+    );
   }
 }
 
