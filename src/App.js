@@ -15,10 +15,6 @@ class App extends Component {
     ]
   };
 
-  toggleHover = () => {
-    this.setState({ ...this.state, hover: !this.state.hover });
-  };
-
   toggleTodo = id => {
     const { todos } = this.state;
     const newTodos = todos.map(todo => {
@@ -27,6 +23,12 @@ class App extends Component {
       }
       return todo;
     });
+    this.setState({ ...this.state, todos: newTodos });
+  };
+
+  deleteTodo = id => {
+    const { todos } = this.state;
+    const newTodos = todos.filter(todo => todo.id !== id);
     this.setState({ ...this.state, todos: newTodos });
   };
 
@@ -39,8 +41,8 @@ class App extends Component {
 
         <TodoList
           todos={todos}
-          toggleHover={this.toggleHover}
           toggleTodo={this.toggleTodo}
+          deleteTodo={this.deleteTodo}
         />
       </div>
     );

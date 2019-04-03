@@ -16,10 +16,10 @@ export class Todo extends Component {
       ? { background: 'rgba(0, 0, 0, .12)' }
       : { background: 'transparent' };
 
-  toggleHover = () => this.setState({ hover: !this.state.hover });
+  toggleHover = hover => this.setState({ hover });
 
   render() {
-    const { todo, toggleTodo } = this.props;
+    const { todo, toggleTodo, deleteTodo } = this.props;
 
     const input = (
       <input
@@ -32,7 +32,10 @@ export class Todo extends Component {
     const span = <span style={styles.span}>{todo.task}</span>;
 
     const button = (
-      <button type='button' style={styles.button}>
+      <button
+        type='button'
+        style={styles.button}
+        onClick={deleteTodo.bind(this, todo.id)}>
         <div className='delete-icon' style={styles.deleteIconLeft} />
         <div className='delete-icon' style={styles.deleteIconRight} />
       </button>
@@ -46,8 +49,9 @@ export class Todo extends Component {
           ...this.hasHoverStyles(this.state.hover),
           ...styles.li
         }}
-        onMouseEnter={this.toggleHover.bind(this)}
-        onMouseLeave={this.toggleHover.bind(this)}>
+        onMouseEnter={this.toggleHover.bind(this, true)}
+        onMouseOver={this.toggleHover.bind(this, true)}
+        onMouseLeave={this.toggleHover.bind(this, false)}>
         <label style={styles.label}>
           {input} {span} {button}
         </label>
@@ -62,7 +66,8 @@ const styles = {
     lineHeight: '40px',
     padding: '8px 32px',
     cursor: 'pointer',
-    listStyle: 'none'
+    listStyle: 'none',
+    transition: 'background 250ms'
   },
 
   label: {
@@ -92,7 +97,8 @@ const styles = {
     cursor: 'inherit',
     outline: 'none',
     color: 'gray',
-    position: 'relative'
+    position: 'relative',
+    margin: '4px'
   },
 
   deleteIconLeft: {
