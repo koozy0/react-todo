@@ -8,8 +8,8 @@ export class Todo extends Component {
 
   hasLineThrough = todo =>
     todo.completed
-      ? { textDecoration: 'line-through' }
-      : { textDecoration: 'none' };
+      ? { textDecoration: 'line-through', color: 'rgba(0, 0, 0, .36)' }
+      : { textDecoration: 'none', color: 'rgba(0, 0, 0, .87)' };
 
   hasHoverStyles = hover =>
     hover
@@ -53,7 +53,9 @@ export class Todo extends Component {
         onMouseOver={this.toggleHover.bind(this, true)}
         onMouseLeave={this.toggleHover.bind(this, false)}>
         <label style={styles.label}>
-          {input} {span} {button}
+          {input}
+          {span}
+          {button}
         </label>
       </li>
     );
@@ -128,7 +130,9 @@ const styles = {
 
 // PropTypes
 Todo.propTypes = {
-  todo: PropTypes.object.isRequired
+  todo: PropTypes.object.isRequired,
+  toggleTodo: PropTypes.func.isRequired,
+  deleteTodo: PropTypes.func.isRequired
 };
 
 export default Todo;

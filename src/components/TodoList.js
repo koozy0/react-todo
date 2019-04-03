@@ -31,7 +31,9 @@ const styles = {
 
 // PropTypes
 TodoList.propTypes = {
-  todos: PropTypes.array.isRequired
+  todos: PropTypes.array.isRequired,
+  toggleTodo: PropTypes.func.isRequired,
+  deleteTodo: PropTypes.func.isRequired
 };
 
 export default TodoList;
