@@ -20,7 +20,7 @@ export class TodoList extends Component {
 
 const styles = {
   ul: {
-    padding: '16px'
+    padding: '16px 0'
   }
 };
 

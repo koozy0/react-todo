@@ -31,6 +31,13 @@ export class Todo extends Component {
 
     const span = <span style={styles.span}>{todo.task}</span>;
 
+    const button = (
+      <button type='button' style={styles.button}>
+        <div className='delete-icon' style={styles.deleteIconLeft} />
+        <div className='delete-icon' style={styles.deleteIconRight} />
+      </button>
+    );
+
     return (
       <li
         className='todo-item'
@@ -42,7 +49,7 @@ export class Todo extends Component {
         onMouseEnter={this.toggleHover.bind(this)}
         onMouseLeave={this.toggleHover.bind(this)}>
         <label style={styles.label}>
-          {input} {span}
+          {input} {span} {button}
         </label>
       </li>
     );
@@ -53,7 +60,7 @@ export class Todo extends Component {
 const styles = {
   li: {
     lineHeight: '40px',
-    padding: '8px 16px',
+    padding: '8px 32px',
     cursor: 'pointer',
     listStyle: 'none'
   },
@@ -74,6 +81,42 @@ const styles = {
     marginLeft: '8px',
     flex: '1',
     cursor: 'inherit'
+  },
+
+  button: {
+    width: '24px',
+    height: '24px',
+    borderRadius: '50%',
+    border: '1px solid gray',
+    background: 'transparent',
+    cursor: 'inherit',
+    outline: 'none',
+    color: 'gray',
+    position: 'relative'
+  },
+
+  deleteIconLeft: {
+    height: '8px',
+    width: '8px',
+    borderColor: 'gray',
+    borderStyle: 'solid',
+    borderWidth: '1px 1px 0 0',
+    position: 'absolute',
+    top: '7px',
+    left: '2px',
+    transform: 'rotate(45deg)'
+  },
+
+  deleteIconRight: {
+    height: '8px',
+    width: '8px',
+    borderColor: 'gray',
+    borderStyle: 'solid',
+    borderWidth: '1px 0 0 1px',
+    position: 'absolute',
+    top: '7px',
+    left: '12px',
+    transform: 'rotate(-45deg)'
   }
 };
 

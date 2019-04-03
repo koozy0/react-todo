@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class Navbar extends Component {
   render() {
     return (
-      <nav>
+      <nav style={styles.nav}>
         <ul style={styles.ul}>
           <li style={styles.li}> Todo List </li>
           <li style={styles.li}> nav-item </li>
@@ -15,6 +15,10 @@ class Navbar extends Component {
 }
 
 const styles = {
+  nav: {
+    background: 'rgba(0, 0, 0, .12)'
+  },
+
   ul: {
     display: 'flex',
     flexDirection: 'row',
