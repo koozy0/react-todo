@@ -11,14 +11,25 @@ export class Todo extends Component {
       ? { textDecoration: 'line-through' }
       : { textDecoration: 'none' };
 
-  hasHoverStyles = hover => (hover ? { color: 'red' } : { color: 'black' });
+  hasHoverStyles = hover =>
+    hover
+      ? { background: 'rgba(0, 0, 0, .12)' }
+      : { background: 'transparent' };
 
-  toggleHover = () => {
-    this.setState({ hover: !this.state.hover });
-  };
+  toggleHover = () => this.setState({ hover: !this.state.hover });
 
   render() {
     const { todo, toggleTodo } = this.props;
+
+    const input = (
+      <input
+        type='checkbox'
+        style={styles.input}
+        onChange={toggleTodo.bind(this, todo.id)}
+      />
+    );
+
+    const span = <span style={styles.span}>{todo.task}</span>;
 
     return (
       <li
@@ -26,17 +37,12 @@ export class Todo extends Component {
         style={{
           ...this.hasLineThrough(todo),
           ...this.hasHoverStyles(this.state.hover),
-          ...todoItemStyle
+          ...styles.li
         }}
         onMouseEnter={this.toggleHover.bind(this)}
         onMouseLeave={this.toggleHover.bind(this)}>
-        <label style={labelStyle}>
-          <input
-            type='checkbox'
-            style={inputStyle}
-            onChange={toggleTodo.bind(this, todo.id)}
-          />
-          <span style={spanStyle}>{todo.task}</span>
+        <label style={styles.label}>
+          {input} {span}
         </label>
       </li>
     );
@@ -44,14 +50,31 @@ export class Todo extends Component {
 }
 
 // Styles
-const todoItemStyle = { lineHeight: '40px', padding: '8px 16px' };
-const labelStyle = {
-  display: 'flex',
-  flexDirection: 'row',
-  alignItems: 'center'
+const styles = {
+  li: {
+    lineHeight: '40px',
+    padding: '8px 16px',
+    cursor: 'pointer'
+  },
+
+  label: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    cursor: 'inherit'
+  },
+
+  input: {
+    margin: '4px',
+    cursor: 'inherit'
+  },
+
+  span: {
+    marginLeft: '8px',
+    flex: '1',
+    cursor: 'inherit'
+  }
 };
-const inputStyle = { margin: '4px' };
-const spanStyle = { marginLeft: '8px', flex: '1' };
 
 // PropTypes
 Todo.propTypes = {
