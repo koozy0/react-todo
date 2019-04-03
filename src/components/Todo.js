@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 export class Todo extends Component {
   render() {
-    const { todos } = this.props;
+    const { todo } = this.props;
 
-    return todos.map(todo => (
-      <li className='todo-item' key={todo.id}>
-        {todo.task}
-      </li>
-    ));
+    return <li className='todo-item'>{todo.task}</li>;
   }
 }
+
+Todo.propTypes = {
+  todo: PropTypes.object.isRequired
+};
 
 export default Todo;
