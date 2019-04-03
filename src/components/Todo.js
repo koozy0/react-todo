@@ -54,7 +54,8 @@ const styles = {
   li: {
     lineHeight: '40px',
     padding: '8px 16px',
-    cursor: 'pointer'
+    cursor: 'pointer',
+    listStyle: 'none'
   },
 
   label: {

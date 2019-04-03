@@ -10,9 +10,19 @@ export class TodoList extends Component {
       <Todo key={todo.id} todo={todo} toggleTodo={toggleTodo} />
     ));
 
-    return <ul className='todo-list'>{todoItems}</ul>;
+    return (
+      <ul className='todo-list' style={styles.ul}>
+        {todoItems}
+      </ul>
+    );
   }
 }
+
+const styles = {
+  ul: {
+    padding: '16px'
+  }
+};
 
 // PropTypes
 TodoList.propTypes = {
