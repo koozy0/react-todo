@@ -4,12 +4,17 @@ import Todo from './Todo';
 
 export class TodoList extends Component {
   render() {
-    const { todos } = this.props;
-    const todoItems = todos.map(todo => <Todo key={todo.id} todo={todo} />);
+    const { todos, toggleTodo } = this.props;
+
+    const todoItems = todos.map(todo => (
+      <Todo key={todo.id} todo={todo} toggleTodo={toggleTodo} />
+    ));
+
     return <ul className='todo-list'>{todoItems}</ul>;
   }
 }
 
+// PropTypes
 TodoList.propTypes = {
   todos: PropTypes.array.isRequired
 };

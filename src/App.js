@@ -15,6 +15,21 @@ class App extends Component {
     ]
   };
 
+  toggleHover = () => {
+    this.setState({ ...this.state, hover: !this.state.hover });
+  };
+
+  toggleTodo = id => {
+    const { todos } = this.state;
+    const newTodos = todos.map(todo => {
+      if (todo.id === id) {
+        todo.completed = !todo.completed;
+      }
+      return todo;
+    });
+    this.setState({ ...this.state, todos: newTodos });
+  };
+
   render() {
     const { todos } = this.state;
 
@@ -22,7 +37,11 @@ class App extends Component {
       <div className='react-todo'>
         <Navbar />
 
-        <TodoList todos={todos} />
+        <TodoList
+          todos={todos}
+          toggleHover={this.toggleHover}
+          toggleTodo={this.toggleTodo}
+        />
       </div>
     );
   }
