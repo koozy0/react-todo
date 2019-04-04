@@ -1,18 +1,22 @@
 import React, { Component } from 'react';
 import './App.css';
+import uuid from 'uuid';
 
-import Navbar from './components/Navbar';
-import TodoList from './components/TodoList';
+import Navbar from './components/layouts/Navbar';
+import AddTodo from './components/todos/AddTodo';
+import TodoList from './components/todos/TodoList';
+
+const TODOS = [
+  { id: uuid.v4(), task: 'Lorem ipsum dolor sit amet', ompleted: false },
+  { id: uuid.v4(), task: 'consectetur adipiscing elit', completed: false },
+  { id: uuid.v4(), task: 'Cras ullamcorper libero vel', completed: false },
+  { id: uuid.v4(), task: 'Maecenas ante elit amet', completed: false },
+  { id: uuid.v4(), task: 'ornare placerat scelerisque', completed: false }
+];
 
 class App extends Component {
   state = {
-    todos: [
-      { id: 1, task: 'Lorem ipsum dolor sit amet', completed: false },
-      { id: 2, task: 'consectetur adipiscing elit', completed: false },
-      { id: 3, task: 'Cras ullamcorper libero vel', completed: false },
-      { id: 4, task: 'Maecenas ante elit amet ultricies', completed: false },
-      { id: 5, task: 'ornare placerat scelerisque sed', completed: false }
-    ]
+    todos: TODOS
   };
 
   toggleTodo = id => {
@@ -32,13 +36,19 @@ class App extends Component {
     this.setState({ ...this.state, todos: newTodos });
   };
 
+  addTodo = task => {
+    const { todos } = this.state;
+    const newTodo = { id: uuid.v4(), task, completed: false };
+    this.setState({ ...this.state, todos: [...todos, newTodo] });
+  };
+
   render() {
     const { todos } = this.state;
 
     return (
       <div className='react-todo'>
         <Navbar />
-
+        <AddTodo addTodo={this.addTodo} />
         <TodoList
           todos={todos}
           toggleTodo={this.toggleTodo}

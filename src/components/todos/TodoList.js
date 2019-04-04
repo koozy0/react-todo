@@ -15,19 +15,9 @@ export class TodoList extends Component {
       />
     ));
 
-    return (
-      <ul className='todo-list' style={styles.ul}>
-        {todoItems}
-      </ul>
-    );
+    return <ul className='todo-list'>{todoItems}</ul>;
   }
 }
-
-const styles = {
-  ul: {
-    padding: '16px 0'
-  }
-};
 
 // PropTypes
 TodoList.propTypes = {
