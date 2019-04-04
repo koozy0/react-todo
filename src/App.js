@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './App.css';
 import uuid from 'uuid';
 
 import Navbar from './components/layouts/Navbar';
+import About from './components/pages/About';
 import AddTodo from './components/todos/AddTodo';
 import TodoList from './components/todos/TodoList';
 
@@ -46,15 +48,28 @@ class App extends Component {
     const { todos } = this.state;
 
     return (
-      <div className='react-todo'>
-        <Navbar />
-        <AddTodo addTodo={this.addTodo} />
-        <TodoList
-          todos={todos}
-          toggleTodo={this.toggleTodo}
-          deleteTodo={this.deleteTodo}
-        />
-      </div>
+      <Router>
+        <div className='container'>
+          <Navbar />
+
+          <Route
+            exact
+            path='/'
+            render={props => (
+              <React.Fragment>
+                <AddTodo addTodo={this.addTodo} />
+                <TodoList
+                  todos={todos}
+                  toggleTodo={this.toggleTodo}
+                  deleteTodo={this.deleteTodo}
+                />
+              </React.Fragment>
+            )}
+          />
+
+          <Route path='/about' component={About} />
+        </div>
+      </Router>
     );
   }
 }
